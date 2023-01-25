@@ -1,0 +1,88 @@
+/*  Algorithm 
+
+    => STL has ocean of alogrithms, Some of the most used alogrithms on vectors :- 
+*/
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>                      // For accumulate opration
+using namespace std;
+
+void pvect(vector<int> v){              // Function to print vector
+    for(int i:v){              
+        cout<<i<<endl;            
+    }
+}
+
+int main() {
+    
+    int arr[] = {10, 20, 5, 23, 42, 15};                      // Initializing vector with array values
+    int n = sizeof(arr)/sizeof(arr[0]);
+    vector<int> vect(arr, arr+n);              
+    pvect(vect);                                              // 10 20 5 23 42 15
+    
+    sort(vect.begin(),vect.end());                            // Sorting the Vector in Ascending order
+    cout<<endl;
+    pvect(vect);                                              // 5 10 15 10 23 42
+    
+    sort(vect.begin(),vect.end(), greater<int>());            // Sorting the Vector in Descending order
+    cout<<endl;
+    pvect(vect);                                              // 42 23 20 15 10 5
+    
+    reverse(vect.begin(), vect.end());                  // Reversing the Vector (descending to ascending , ascending to descending)
+     cout<<endl;
+    pvect(vect);                                        // 5 10 15 10 23 42
+    
+    cout << "\nMaximum element of vector is: ";                // Maximum element of vector
+    cout << *max_element(vect.begin(), vect.end());            // Maximum element of vector is: 42
+    
+    cout << "\nMinimum element of vector is: ";                //Minimum element of vector
+    cout << *min_element(vect.begin(), vect.end());            //Minimum element of vector is: 5
+ 
+    cout << "\nThe summation of vector elements is: ";         // Starting the summation from 0
+    cout << accumulate(vect.begin(), vect.end(), 0);           // The summation of vector elements is: 215
+    
+    
+    cout <<endl<< count(vect.begin(), vect.end(), 20);         // count the occurrences of x in vector
+    
+    find(vect.begin(), vect.end(),5) != vect.end()?    // 
+                         cout << "\nElement found":
+                     cout << "\nElement not found";
+    
+    cout<<endl<<"Finding 20 : "<<binary_search(vect.begin(),vect.end(),20);                         // Test weather x exists in sorted vector or not
+    
+    cout<<endl<<"lower bound : "<< lower_bound(vect.begin(),vect.end(),13)-vect.begin();            /* returns an iterator pointing to the first element in the
+                                                                                                       range [first,last) which has a value not less than ‘x’ */
+    
+    cout<<endl<<"upper bound : "<< upper_bound(vect.begin(),vect.end(),24)-vect.begin()<<endl;      /* returns an iterator pointing to the first element in the
+                                                                                                       range [first,last) which has a value greater than ‘x’  */ 
+    
+    rotate(vect.begin(),vect.begin()+2,vect.end());                 // left rotation
+    pvect(vect);                                                    // 15 20 23 42 5 10
+    
+    rotate(vect.begin(),vect.begin()+n-4,vect.end());               // right rotation
+    pvect(vect);                                                    // 23 42 5 10 15 20
+    
+    
+    vect.erase(find(vect.begin(),vect.end(),10));                   // erases selected element in vector and shifts and resizes the vector elements accordingly
+    pvect(vect);                                                    // 23 42 5 15 20
+    
+    vect.push_back(15);
+    sort(vect.begin(),vect.end());
+    pvect(vect);                                                    // 5 15 15 20 23 42
+    
+    vect.erase(unique(vect.begin(), vect.end()),vect.end());        // erases the duplicate occurrences in sorted vector in a single line
+    pvect(vect);             // 5 15 20 23 42
+    
+    next_permutation(vect.begin(), vect.end());                     // modifies vector to its next permutation order
+    pvect(vect);         // 5 15 20 42 23
+    
+    prev_permutation(vect.begin(), vect.end());                     // modified the vector to its previous permutation
+    pvect(vect);        // 5 15 20 23 42
+    
+    cout << distance(vect.begin(),max_element(vect.begin(), vect.end()));                   //returns the distance of desired position from the first iterator
+
+
+    return 0;
+}
