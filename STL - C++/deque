@@ -1,0 +1,48 @@
+/*  Deque 
+
+    => Sequence containers with the feature of expansion and conraction on both ends.
+    They are similar to vectors but more efficient in case of insertions & deletion of elements
+*/
+
+#include <iostream>
+#include <deque>
+using namespace std;
+
+int main() {
+    deque<int> d;                          // created a deque 
+    
+    d.push_back(10);                       // add element to deque from back
+    d.push_front(20);                      // add element to deque from front
+    d.push_back(30);
+    d.push_front(40);
+    d.push_back(50);
+    
+    d.pop_back();                          // remove the element from back
+    d.pop_front();                         // remove the element from front
+    
+    for(int i:d){                          // iterate through the deque
+        cout<<i<<endl;                     // 20 10 30 
+    }                          
+    
+    int size = d.size();                   // size() gives total element that are are stored in deque      
+    
+    cout<<size<<endl;                      // 3
+    
+    cout<<"element at 2nd index => "<<d.at(2)<<endl;                   // element at 2nd index => 3
+    
+    cout<<"Empty or not => "<<d.empty()<<endl;
+    
+    cout<<"First element => "<<d.front()<<endl;                        // First element => 1
+    
+    cout<<"Last element => "<<d.back()<<endl;                          // Last element => 4
+    
+    d.erase(d.begin(),d.begin()+1);                                    // erase() remove elements from a container from the specified poistion or range
+    
+    for(int i:d){              
+        cout<<i<<endl;                            // 10 30 
+    }
+    
+    d.clear();                                    // clear the array & size will be 0
+    
+    return 0;
+}
